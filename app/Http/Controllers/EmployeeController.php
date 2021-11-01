@@ -16,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::latest()->paginate(10);
+        #$employees = Employee::latest()->paginate(10);
+        $employees = Employee::orderBy('first_name', 'asc')->paginate(10);
         return view('employee.index',compact('employees'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }

@@ -42,9 +42,10 @@ class CompanyController extends Controller
         $validator = $this->validateInputs($request);
         
         if($validator->fails()) {
+            return redirect()->route('company.index')->withErrors($validator);
             #$errorMessage = $validator->getMessageBag()->toArray();
             #return response()->json(['status' => 0, 'errors' => $errorMessage]);
-            return redirect()->route('company.index')->with('error','Oops! Something went wrong. Please try again.');
+            #return redirect()->route('company.index')->with('error','Oops! Something went wrong. Please try again.');
         }
     
         $input = $request->all();
@@ -94,7 +95,7 @@ class CompanyController extends Controller
         $validator = $this->validateInputs($request);
         
         if($validator->fails()) {
-            return redirect()->route('company.index')->with('error','Oops! Something went wrong. Please try again.');
+            return redirect()->route('company.index')->withErrors($validator);
         }
         
         $input = $request->all();
